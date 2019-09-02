@@ -1,15 +1,19 @@
-def a_decorator_passing_arguments(function_to_decorate):
-    def a_wrapper_accepting_arguments(*args):
-        print(f"Your function name:{function_to_decorate.__name__}")
-        print(f"Your string list:{[el for el in args if isinstance(el, str)]}")
-        print(function_to_decorate(*args))
+def decorator_function_with_arguments(*args):
+    def wrap(function):
+        def wrapped_f():
+            print(f"Your function name:{function.__name__}")
+            print(f"Your string list:{[el for el in args if isinstance(el, str)]}")
+            function()
+            print(f"Your not str list:{[el for el in argsgit if not isinstance(el, str)]}")
 
-    return a_wrapper_accepting_arguments
+        return wrapped_f
+
+    return wrap
 
 
-@a_decorator_passing_arguments
-def any_type_except_str(*args):
-    return [el for el in args if not isinstance(el, str)]
+@decorator_function_with_arguments(1.5, "asdasdasdasdasdasdasdasdas0", 13, "bla", True, {"first": 1})
+def any_type_except_str():
+    return print("working inside function")
 
 
-any_type_except_str(1.5, "asdasdasdasdasdasdasdasdas0", 13, "bla", True, {"first": 1})
+any_type_except_str()
