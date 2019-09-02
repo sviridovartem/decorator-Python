@@ -1,5 +1,7 @@
+from functools import wraps
 def decorator_function_with_arguments(*args):
     def wrap(function):
+        @wraps(function)
         def wrapped_f():
             print(f"Your function name:{function.__name__}")
             print(f"Your string list:{[el for el in args if isinstance(el, str)]}")
@@ -17,3 +19,4 @@ def any_type_except_str():
 
 
 any_type_except_str()
+print(any_type_except_str.__name__)
