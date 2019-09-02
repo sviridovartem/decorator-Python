@@ -4,7 +4,7 @@ def decorator_function_with_arguments(*args):
             print(f"Your function name:{function.__name__}")
             print(f"Your string list:{[el for el in args if isinstance(el, str)]}")
             function()
-            print(f"Your not str list:{[el for el in argsgit if not isinstance(el, str)]}")
+            print(f"Your not str list:{[el for el in args if not isinstance(el, str)]}")
 
         return wrapped_f
 
